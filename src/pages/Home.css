@@ -1,0 +1,360 @@
+/* Home Page Stylesheet */
+
+.home-container {
+  position: relative;
+  width: 100%;
+  min-height: 200vh; /* Two full viewports */
+  background-color: var(--color-bg-light);
+  overflow: hidden; /* Clips any absolute overflow to prevent page stretching */
+}
+
+/* Background elements placed behind content and bouquet */
+.bg-frame-1, .bg-frame-2 {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-frame-1 {
+  top: 0;
+  height: 100vh;
+}
+
+.bg-frame-2 {
+  top: 100vh;
+  bottom: 0;
+  height: auto;
+}
+
+/* Section 1: Hero Viewport */
+.section-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  z-index: 10;
+}
+
+/* Stamp: top-right */
+.stamp-wrapper {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  width: clamp(80px, 9vw, 130px); /* Reduced stamp size */
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.stamp-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.15));
+}
+
+/* Brand Title: top-left */
+.title-wrapper {
+  position: absolute;
+  top: clamp(40px, 8vh, 120px);
+  left: clamp(30px, 6vw, 80px);
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.main-title {
+  font-family: var(--font-title-smooth);
+  font-size: clamp(3rem, 6.5vw, 7rem);
+  font-weight: normal;
+  color: #A94F48;
+  line-height: 1.1;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.main-tagline {
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  font-weight: 800;
+  color: #4A3E3D; /* Deep warm charcoal */
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.main-tagline .accent-dot {
+  color: var(--color-primary); /* Coral pink accent color */
+  font-weight: bold;
+}
+
+/* Center CTA Button */
+.cta-wrapper {
+  position: absolute;
+  top: 52%; /* Slightly lower to balance the screen layout and clear the title */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-align: center;
+  opacity: 0;
+}
+
+.build-button {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.1rem, 2.3vw, 1.8rem); /* Reduced size significantly */
+  color: #ffffff;
+  background: rgba(255, 140, 132, 0.75); /* Translucent glass */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px; /* Pill shape */
+  padding: clamp(12px, 2vh, 18px) clamp(28px, 4vw, 48px);
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(255, 140, 132, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.build-button:hover {
+  background: rgba(255, 140, 132, 0.9);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.05) translateY(-2px); /* Soft bounce up */
+  box-shadow: 0 12px 35px rgba(255, 140, 132, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.build-button:active {
+  transform: scale(0.98) translateY(0);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  z-index: 10;
+}
+
+.scroll-text {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.mouse {
+  width: 20px;
+  height: 32px;
+  border: 2px solid var(--color-text-muted);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background-color: var(--color-text-muted);
+  border-radius: 2px;
+  animation: scrollMouse 1.8s ease-in-out infinite;
+}
+
+/* Section 2: Reveal Content */
+.section-reveal {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8vh 24px 4vh 24px;
+  z-index: 10;
+}
+
+.reveal-content {
+  max-width: 600px;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 253, 251, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-lg);
+  margin: auto 0; /* Centers it vertically inside the section height */
+}
+
+.home-footer {
+  position: relative;
+  z-index: 10; /* Forces text to sit in front of stems if they overlap */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  padding-top: 20px;
+}
+
+.home-footer:hover {
+  opacity: 0.9;
+}
+
+.footer-brand {
+  font-family: var(--font-title-smooth);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--color-text-dark);
+}
+
+.footer-credits {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.aesthetic-quote {
+  font-family: var(--font-handwritten);
+  font-size: 2.2rem;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.aesthetic-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* Bouquet Hero Wrapper (Positioned relative to scroll container) */
+.bouquet-hero-wrapper {
+  position: absolute;
+  top: 30vh; /* Raised bouquet position from 38vh to 30vh */
+  left: 50%;
+  width: clamp(320px, 59.5vw, 1024px);
+  max-height: 160vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.bouquet-hero-inner {
+  width: 100%;
+  transform: translateY(100vh);
+  will-change: transform;
+}
+
+.bouquet-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Entrance Animations */
+
+.animate-fade-in {
+  animation: fadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-fade-in-delayed {
+  animation: fadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+}
+
+.animate-rise-up {
+  animation: riseUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes riseUp {
+  from {
+    transform: translateY(80vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatStamp {
+  0% {
+    transform: rotate(3deg) translateY(0);
+  }
+  100% {
+    transform: rotate(8deg) translateY(-12px);
+  }
+}
+
+@keyframes scrollMouse {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .section-hero {
+    padding: 20px;
+  }
+  .stamp-wrapper {
+    top: 20px;
+    right: 20px;
+  }
+  .title-wrapper {
+    top: 40px;
+    left: 20px;
+  }
+  .bouquet-hero-wrapper {
+    width: clamp(280px, 80vw, 420px);
+    bottom: -20px;
+  }
+  .cta-wrapper {
+    top: 50%;
+  }
+}

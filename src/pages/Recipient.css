@@ -1,0 +1,264 @@
+/* Recipient Page Stylesheet */
+
+.recipient-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--color-text-dark);
+  position: relative;
+}
+
+.recipient-brand {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-title-smooth);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  letter-spacing: 1px;
+  color: #A94F48;
+  text-transform: lowercase;
+  z-index: 50;
+}
+
+/* Centered Layout */
+.recipient-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px 20px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.recipient-interactive-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+  gap: 20px;
+}
+
+.recipient-bouquet-container {
+  width: 100%;
+  position: relative; /* Crucial for absolute overlay postcard */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInQuick 0.6s ease-out forwards;
+}
+
+.recipient-bouquet-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 468 / 743;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.recipient-wrap-layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.recipient-wrap-layer.back {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 49.7%;
+  object-fit: fill;
+}
+
+.recipient-wrap-layer.front {
+  z-index: 40;
+  top: 24.9%;
+  left: 2.25%;
+  width: 95.5%;
+  height: 75.1%;
+  object-fit: fill;
+}
+
+.recipient-greenery-asset {
+  position: absolute;
+  width: 38%;
+  height: auto;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+/* Recipient Interactive Flowers */
+.recipient-flower-wrapper {
+  position: absolute;
+  width: 28%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none; /* Default none */
+  transform-origin: center center;
+}
+
+.recipient-flower-wrapper.interactive {
+  pointer-events: auto; /* Clickable if it has a link */
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+}
+
+.recipient-flower-wrapper.interactive:hover {
+  transform: translate(-50%, -50%) scale(1.15) !important;
+  filter: drop-shadow(0 10px 20px rgba(169, 79, 72, 0.25));
+}
+
+.recipient-flower-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Glowing Pulsing Badge for Linked Flowers on Recipient View */
+.recipient-link-pulse {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #A94F48;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 0 rgba(169, 79, 72, 0.4);
+  border: 1.5px solid #ffffff;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(169, 79, 72, 0.6);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(169, 79, 72, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(169, 79, 72, 0);
+  }
+}
+
+/* Read-Only Postcard Overlay */
+.postcard-overlay-card-recipient {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96%;
+  aspect-ratio: 1.54;
+  background-image: url('../../postcard/postcard.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 45;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.recipient-postcard-text-to {
+  position: absolute;
+  top: 9.5%;
+  left: 17%;
+  width: 38%;
+  font-family: var(--font-typewriter), Courier, monospace;
+  font-size: 1.05rem;
+  color: #2c2724;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recipient-postcard-text-from {
+  position: absolute;
+  top: 19.5%;
+  left: 21%;
+  width: 34%;
+  font-family: var(--font-typewriter), Courier, monospace;
+  font-size: 1.05rem;
+  color: #2c2724;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recipient-postcard-text-message {
+  position: absolute;
+  top: 32%;
+  left: 6%;
+  width: 48%;
+  height: 60%;
+  font-family: var(--font-typewriter), Courier, monospace;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #2c2724;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Interactive Hint Card */
+.recipient-hint-card {
+  width: 100%;
+  background: rgba(255, 253, 251, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #A94F48;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.hint-icon {
+  flex-shrink: 0;
+  animation: floatSlow 3s infinite ease-in-out;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-3px) rotate(8deg);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .recipient-interactive-area {
+    max-width: 320px;
+  }
+  
+  .recipient-postcard-text-to,
+  .recipient-postcard-text-from,
+  .recipient-postcard-text-message {
+    font-size: 0.8rem;
+  }
+  
+  .recipient-hint-card {
+    font-size: 0.75rem;
+    padding: 10px 14px;
+  }
+}

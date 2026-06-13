@@ -1,0 +1,311 @@
+/* Arrange Page Stylesheet */
+
+.arrange-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--color-text-dark);
+  padding-bottom: 50px;
+}
+
+/* Header Bar Styling */
+.arrange-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 50;
+}
+
+.back-btn-glass {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  padding: 6px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.back-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: translateX(-2px);
+}
+
+.logo-tiny-arrange {
+  font-family: var(--font-title-smooth);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  letter-spacing: 1px;
+  color: #A94F48;
+  text-transform: lowercase;
+}
+
+/* Main Container */
+.arrange-main {
+  flex: 1;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.arrange-title-area {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.arrange-title {
+  font-family: var(--font-brolimo);
+  font-size: 2.3rem;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  color: #A94F48;
+}
+
+.arrange-subtitle {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* 3D Bouquet Canvas */
+.bouquet-canvas-container {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bouquet-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 468 / 743; /* Matches Figma's exact total bounding box aspect ratio */
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+/* Wrap Layers (Back and Front) */
+.wrap-layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.back-wrap {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 49.7%;
+  object-fit: fill;
+}
+
+.front-wrap {
+  z-index: 40; /* Sits on top of flowers and greenery */
+  top: 24.9%;
+  left: 2.25%;
+  width: 95.5%;
+  height: 75.1%;
+  object-fit: fill;
+}
+
+/* Layered Greenery Assets */
+.greenery-asset {
+  position: absolute;
+  width: 38%; /* Scaled for framing bounds */
+  height: auto;
+  pointer-events: none;
+  transform-origin: center center;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth rearrangement transition */
+}
+
+/* Flower Assets */
+.flower-asset-wrapper {
+  position: absolute;
+  width: 28%; /* Base coordinate sizing container */
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform-origin: center center;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth rearrangement transition */
+}
+
+.flower-asset-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+/* Control Buttons Section */
+.arrange-controls {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.control-btn-glass {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.control-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+}
+
+.control-btn-glass svg {
+  transition: transform 0.6s ease;
+}
+
+.control-btn-glass:hover svg {
+  transform: rotate(180deg);
+}
+
+.control-btn-proceed {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 140, 132, 0.75); /* Translucent coral glass */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(255, 140, 132, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.control-btn-proceed:hover {
+  background: rgba(255, 140, 132, 0.9);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 132, 0.35);
+}
+
+/* Responsive overrides for mobile viewport lock (no-scroll) */
+@media (max-width: 768px) {
+  .arrange-container {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden; /* Prevent any vertical scroll */
+    padding-bottom: 0;
+  }
+
+  .arrange-header {
+    height: 50px;
+    padding: 0 16px;
+  }
+
+  .back-btn-glass {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+  }
+
+  .logo-tiny-arrange {
+    font-size: 1.3rem;
+  }
+
+  .arrange-main {
+    padding: 8px 16px 16px 16px;
+    gap: 12px;
+    justify-content: space-between;
+    height: calc(100% - 50px);
+  }
+
+  .arrange-title-area {
+    gap: 2px;
+  }
+
+  .arrange-title {
+    font-size: 1.4rem;
+  }
+
+  .arrange-subtitle {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .bouquet-canvas-container {
+    height: 50vh;
+    height: 50dvh; /* Force canvas to be bounded by vertical height */
+    width: auto;
+    aspect-ratio: 468 / 743; /* Maintain exact Figma aspect ratio */
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .bouquet-canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  .arrange-controls {
+    margin-top: 0;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .control-btn-glass, .control-btn-proceed {
+    padding: 11px;
+    font-size: 0.8rem;
+    border-radius: 16px;
+  }
+}

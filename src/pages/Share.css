@@ -1,0 +1,319 @@
+/* Share Page Stylesheet */
+
+.share-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--color-text-dark);
+  padding-bottom: 50px;
+}
+
+/* Header */
+.share-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 50;
+}
+
+.logo-tiny-share {
+  font-family: var(--font-title-smooth);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  letter-spacing: 1px;
+  color: #A94F48;
+  text-transform: lowercase;
+}
+
+/* Layout Grid */
+.share-main {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.share-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Bouquet Column styling */
+.share-col-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-bouquet-container {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-bouquet-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 468 / 743;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.share-wrap-layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.share-wrap-layer.back {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 49.7%;
+  object-fit: fill;
+}
+
+.share-wrap-layer.front {
+  z-index: 40;
+  top: 24.9%;
+  left: 2.25%;
+  width: 95.5%;
+  height: 75.1%;
+  object-fit: fill;
+}
+
+.share-greenery-asset {
+  position: absolute;
+  width: 38%;
+  height: auto;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+.share-flower-wrapper {
+  position: absolute;
+  width: 28%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+.share-flower-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Content Column / Share Card */
+.share-col-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.share-success-card {
+  background: rgba(255, 253, 251, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.share-success-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(169, 79, 72, 0.1);
+  color: #A94F48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.share-success-title {
+  font-family: var(--font-brolimo);
+  font-size: 2.1rem;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  color: #A94F48;
+}
+
+.share-success-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Link Box with Copy Button */
+.share-link-box {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  padding: 6px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.share-link-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  color: var(--color-text-dark);
+  padding: 8px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.share-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #A94F48;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.share-copy-btn:hover {
+  background: #8e3e38;
+}
+
+.share-copy-btn.copied {
+  background: #4ab375; /* Green check copy */
+}
+
+/* Action Buttons */
+.share-action-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.share-btn-primary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(169, 79, 72, 0.85); /* Deep terracotta rose */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(169, 79, 72, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.share-btn-primary:hover {
+  background: rgba(169, 79, 72, 1);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(169, 79, 72, 0.35);
+}
+
+.share-btn-secondary {
+  width: 100%;
+  padding: 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #A94F48;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid rgba(169, 79, 72, 0.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.share-btn-secondary:hover {
+  background: rgba(169, 79, 72, 0.05);
+  border-color: rgba(169, 79, 72, 0.4);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .share-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .share-success-card {
+    padding: 30px 20px;
+  }
+}
+
+/* Full-Screen Flower Curtain Overlay */
+.flower-curtain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999; /* Higher than everything else */
+  overflow: hidden;
+}
+
+.falling-curtain-flower {
+  position: absolute;
+  top: -120px; /* Start above screen */
+  width: clamp(60px, 8vw, 100px); /* Responsive flower width */
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  animation-name: fallCurtain;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+}
+
+@keyframes fallCurtain {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(calc(100vh + 150px)) rotate(360deg);
+  }
+}

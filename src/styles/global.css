@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'DxBurst';
+  src: url('../../fonts/DxBurst-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DxBurst-Smooth';
+  src: url('../../fonts/DxBurst-Smooth.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inktera';
+  src: url('../../fonts/InkteraDemo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Typefesse-Claire';
+  src: url('../../fonts/typefesse-master/Fonts/1-otf/Typefesse_Claire-Obscure.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Typefesse-Pleine';
+  src: url('../../fonts/typefesse-master/Fonts/1-otf/Typefesse_Pleine.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Typewriter';
+  src: url('../../fonts/Typewriter.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brolimo';
+  src: url('../../fonts/BrolimoRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base Styles & Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary: #ff8c84;
+  --color-primary-dark: #e0746d;
+  --color-bg-light: #fffdfb;
+  --color-text-dark: #1e1e1e;
+  --color-text-muted: #666666;
+  --font-title: 'Typefesse-Claire', cursive, sans-serif;
+  --font-title-smooth: 'Typefesse-Pleine', cursive, sans-serif;
+  --font-handwritten: 'Inktera', cursive, sans-serif;
+  --font-typewriter: 'Typewriter', monospace;
+  --font-brolimo: 'Brolimo', serif;
+  --font-sans: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hide scrollbars for full screen feel while maintaining functionality */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
