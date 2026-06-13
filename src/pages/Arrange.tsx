@@ -1,5 +1,5 @@
 import React from 'react';
-import { useApp, SelectedFlower } from '../context/AppContext.tsx';
+import { useApp } from '../context/AppContext.tsx';
 import backgroundImg from '../../home page/background.png';
 import { ArrowLeft, Sparkles, RefreshCw } from 'lucide-react';
 import './Arrange.css';

@@ -8,8 +8,7 @@ import './Recipient.css';
 import classicBack from '../../classic wrap/classic_back.png';
 import classicFront from '../../classic wrap/classic_front.png';
 
-// Import Postcard Asset
-import postcardImg from '../../postcard/postcard.png';
+
 
 // Import Greenery Assets
 import babyBreath from '../../greenery/baby_s_breath.png';
