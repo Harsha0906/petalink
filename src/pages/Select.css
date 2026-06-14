@@ -383,34 +383,103 @@
 
 /* Responsive Grid and Sizes */
 @media (max-width: 480px) {
+  .select-container {
+    padding-bottom: 125px; /* More safety room for floating dock */
+  }
+
+  .select-header {
+    height: 52px;
+    padding: 0 16px;
+  }
+
+  .logo-tiny {
+    font-size: 1.4rem;
+  }
+
+  .select-main-simple {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .inventory-title-simple {
+    font-size: 1.8rem;
+  }
+
+  .inventory-subtitle-simple {
+    font-size: 0.85rem;
+  }
+
+  /* Clear outer card styling on mobile */
+  .flower-circle-item {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
   .flower-circle-grid {
-    grid-template-columns: repeat(3, 1fr); /* Exactly 3 items per row on mobile! */
-    gap: 15px 10px;
+    grid-template-columns: repeat(3, 1fr); /* Exactly 3 items per row on mobile */
+    gap: 18px 10px;
   }
   
   .flower-circle-btn {
-    width: 80px;
-    height: 80px;
-    padding: 12px;
-  }
-  
-  .select-main-simple {
-    padding: 20px 14px;
-    gap: 20px;
+    width: 76px;
+    height: 76px;
+    padding: 10px;
+    -webkit-tap-highlight-color: transparent;
   }
 
+  .flower-circle-btn:active:not(.disabled) {
+    transform: scale(0.94);
+  }
+
+  .flower-circle-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    max-width: 80px;
+    color: #5a4f4e;
+  }
+  
+  .qty-badge {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    top: -3px;
+    right: -3px;
+  }
+
+  .circle-minus-btn {
+    width: 20px;
+    height: 20px;
+    bottom: -3px;
+    left: -3px;
+  }
+
+  /* iOS-Style Translucent Floating Dock */
   .floating-basket-bar {
     width: 92%;
-    bottom: 15px;
+    bottom: 20px;
   }
   
   .floating-basket-inner {
-    padding: 10px 14px;
+    padding: 8px 12px;
+    background: rgba(255, 253, 251, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1.5px solid rgba(255, 255, 255, 0.65);
+    border-radius: 28px;
+    box-shadow: 0 12px 36px rgba(169, 79, 72, 0.15);
   }
   
+  .basket-thumbnails-col {
+    gap: 8px;
+  }
+
   .basket-count-pill {
     padding: 4px 8px;
     font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .basket-mini-pile {
+    min-width: 50px;
   }
   
   .basket-mini-thumbnail {
@@ -420,8 +489,29 @@
   }
   
   .basket-proceed-btn {
-    padding: 8px 16px;
+    padding: 8px 14px;
     font-size: 0.8rem;
+    border-radius: 18px;
+  }
+
+  .basket-proceed-btn.active {
+    animation: activeHeartbeat 2.2s infinite ease-in-out;
+  }
+
+  /* Heartbeat Animation for Active Proceed Button */
+  @keyframes activeHeartbeat {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 4px 15px rgba(255, 140, 132, 0.25), 0 0 0 0 rgba(255, 140, 132, 0.4);
+    }
+    50% {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(255, 140, 132, 0.35), 0 0 0 6px rgba(255, 140, 132, 0);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 15px rgba(255, 140, 132, 0.25), 0 0 0 0 rgba(255, 140, 132, 0);
+    }
   }
 }
 

@@ -248,17 +248,59 @@
 /* Media Queries */
 @media (max-width: 768px) {
   .recipient-interactive-area {
-    max-width: 320px;
+    max-width: 360px; /* Scale up slightly for tactile presence */
+    width: 94%;
   }
   
   .recipient-postcard-text-to,
   .recipient-postcard-text-from,
   .recipient-postcard-text-message {
-    font-size: 0.8rem;
+    font-size: 0.85rem; /* Larger, legible typewriter text on mobile */
   }
   
   .recipient-hint-card {
-    font-size: 0.75rem;
-    padding: 10px 14px;
+    font-size: 0.8rem;
+    padding: 12px 16px;
+    border-radius: 16px;
+  }
+}
+
+/* Falling Pink Petals Celebration */
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  width: 15px;
+  height: 20px;
+  background: linear-gradient(135deg, #ffb7b2, #ff8c84); /* Warm pink rose gradient */
+  border-radius: 15px 0 15px 15px; /* Organic rose petal teardrop shape */
+  opacity: 0.8;
+  animation: fallAndSway 4.5s linear forwards;
+}
+
+@keyframes fallAndSway {
+  0% {
+    top: -20px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(40px) rotate(180deg);
+    opacity: 0.9;
+  }
+  100% {
+    top: 105vh;
+    transform: translateX(-40px) rotate(360deg);
+    opacity: 0;
   }
 }

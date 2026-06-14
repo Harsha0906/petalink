@@ -51,7 +51,22 @@ export const Arrange: React.FC = () => {
     navigateTo
   } = useApp();
 
+  const [animateBounce, setAnimateBounce] = React.useState(false);
+  
+  const handleReshuffleClick = () => {
+    reshuffle();
+    setAnimateBounce(true);
+  };
+
+  React.useEffect(() => {
+    if (animateBounce) {
+      const timer = setTimeout(() => setAnimateBounce(false), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [animateBounce]);
+
   const count = selectedFlowers.length;
+
 
   // Sorting selected flowers by botanical visual weight (heavier flowers placed in focal center slots first)
   const sortedFlowers = [...selectedFlowers].sort((a, b) => {
@@ -179,7 +194,7 @@ export const Arrange: React.FC = () => {
 
         {/* 3D-Layered Bouquet Preview Canvas */}
         <div className="bouquet-canvas-container">
-          <div className="bouquet-canvas">
+          <div className={`bouquet-canvas ${animateBounce ? 'reshuffle-bounce' : ''}`}>
             
             {/* 1. Classic Back Wrap Paper */}
             <img src={classicBack} alt="" className="wrap-layer back-wrap" />
@@ -243,7 +258,7 @@ export const Arrange: React.FC = () => {
 
         {/* Action Controls */}
         <div className="arrange-controls">
-          <button onClick={reshuffle} className="control-btn-glass reshuffle-btn">
+          <button onClick={handleReshuffleClick} className="control-btn-glass reshuffle-btn">
             <RefreshCw size={18} />
             <span>Rearrange</span>
           </button>

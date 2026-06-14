@@ -342,19 +342,68 @@
   .section-hero {
     padding: 20px;
   }
+
+  /* Stamp: Top-Right, scaled down, floating animation */
   .stamp-wrapper {
     top: 20px;
     right: 20px;
+    width: clamp(55px, 15vw, 75px);
+    transform-origin: center center;
+    animation: fadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, floatStampMobile 4s ease-in-out infinite alternate;
   }
+
+  /* Center-aligned Brand Title & Tagline */
   .title-wrapper {
-    top: 40px;
-    left: 20px;
+    top: clamp(60px, 10vh, 100px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .main-title {
+    font-size: clamp(3.2rem, 12vw, 4.8rem);
+    text-align: center;
+  }
+
+  .main-tagline {
+    font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+    letter-spacing: 3px;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  /* Large, Low-positioned Parallax Bouquet for Mobile */
   .bouquet-hero-wrapper {
-    width: clamp(280px, 80vw, 420px);
-    bottom: -20px;
+    top: 55vh;
+    bottom: auto;
+    width: clamp(360px, 110vw, 500px);
+    max-height: 150vh;
   }
+
+  /* Balanced CTA Placement */
   .cta-wrapper {
-    top: 50%;
+    top: 54%;
+  }
+
+  /* Interactive Button Adjustment for Mobile Touch Targets */
+  .build-button {
+    font-size: 1.25rem;
+    padding: 14px 36px;
+    border-radius: 30px;
+  }
+
+  /* Floating animation keyframes for mobile stamp */
+  @keyframes floatStampMobile {
+    0% {
+      transform: rotate(3deg) translateY(0);
+    }
+    100% {
+      transform: rotate(9deg) translateY(-8px);
+    }
   }
 }

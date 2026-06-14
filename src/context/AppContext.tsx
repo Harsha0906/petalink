@@ -126,13 +126,63 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setReshuffleSeed(Math.random());
   };
 
+  // Compression mappings for short sharing URLs
+  const FLOWER_ID_MAP: Record<string, string> = {
+    rose: 'r',
+    lilies: 'l',
+    tulip: 't',
+    sunflower: 's',
+    peony: 'p',
+    daisy: 'd',
+    ranunculus: 'a'
+  };
+
+  const FLOWER_ID_MAP_REV: Record<string, string> = {
+    r: 'rose',
+    l: 'lilies',
+    t: 'tulip',
+    s: 'sunflower',
+    p: 'peony',
+    d: 'daisy',
+    a: 'ranunculus'
+  };
+
+  const WRAP_MAP: Record<string, string> = {
+    classic: 'c',
+    korean: 'k',
+    ribbon: 'r'
+  };
+
+  const WRAP_MAP_REV: Record<string, WrapStyle> = {
+    c: 'classic',
+    k: 'korean',
+    r: 'ribbon'
+  };
+
   const generateShareCode = (): string => {
-    // Basic base64 compression of state to allow client-side URL sharing
-    const data = {
-      flowers: selectedFlowers.map(f => ({ id: f.id, link: f.link })),
-      wrap: wrapStyle,
-      note: personalNote
+    // Compact serialization format (strings for no-link, arrays [id, link] for linked flowers)
+    const compressedFlowers = selectedFlowers.map(f => {
+      const shortId = FLOWER_ID_MAP[f.id] || f.id;
+      return f.link ? [shortId, f.link] : shortId;
+    });
+
+    const data: any = {
+      f: compressedFlowers
     };
+
+    if (wrapStyle !== 'classic') {
+      data.w = WRAP_MAP[wrapStyle] || wrapStyle;
+    }
+
+    const noteData: any = {};
+    if (personalNote.from) noteData.f = personalNote.from;
+    if (personalNote.to) noteData.t = personalNote.to;
+    if (personalNote.message) noteData.m = personalNote.message;
+
+    if (Object.keys(noteData).length > 0) {
+      data.n = noteData;
+    }
+
     const jsonStr = JSON.stringify(data);
     const code = btoa(encodeURIComponent(jsonStr));
     setShareCode(code);
@@ -144,20 +194,46 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const decodedStr = decodeURIComponent(atob(code));
       const data = JSON.parse(decodedStr);
       
-      const mappedFlowers = data.flowers.map((f: { id: string; link: string }, index: number) => {
-        const type = AVAILABLE_FLOWERS.find(t => t.id === f.id);
+      // Support backward compatibility for legacy URLs
+      const flowersData = data.flowers || data.f || [];
+      const wrapData = data.wrap || (data.w ? (WRAP_MAP_REV[data.w] || data.w) : 'classic');
+      const noteData = data.note || {
+        from: (data.n && data.n.f) || '',
+        to: (data.n && data.n.t) || '',
+        message: (data.n && data.n.m) || ''
+      };
+
+      const mappedFlowers = flowersData.map((f: any, index: number) => {
+        let flowerId = '';
+        let flowerLink = '';
+
+        if (typeof f === 'string') {
+          flowerId = FLOWER_ID_MAP_REV[f] || f;
+        } else if (Array.isArray(f)) {
+          flowerId = FLOWER_ID_MAP_REV[f[0]] || f[0];
+          flowerLink = f[1] || '';
+        } else {
+          flowerId = f.id || '';
+          flowerLink = f.link || '';
+        }
+
+        const type = AVAILABLE_FLOWERS.find(t => t.id === flowerId);
         return {
-          uniqueId: `${f.id}-${index}-${Date.now()}`,
-          id: f.id,
-          name: type ? type.name : f.id,
+          uniqueId: `${flowerId}-${index}-${Date.now()}`,
+          id: flowerId,
+          name: type ? type.name : flowerId,
           image: type ? type.image : '',
-          link: f.link || ''
+          link: flowerLink
         };
       });
 
       setSelectedFlowers(mappedFlowers);
-      setWrapStyle(data.wrap || 'classic');
-      setPersonalNote(data.note || { from: '', to: '', message: '' });
+      setWrapStyle(wrapData);
+      setPersonalNote({
+        from: noteData.from || '',
+        to: noteData.to || '',
+        message: noteData.message || ''
+      });
       setShareCode(code);
       return true;
     } catch (e) {

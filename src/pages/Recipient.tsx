@@ -48,6 +48,17 @@ export const Recipient: React.FC = () => {
     reshuffleSeed
   } = useApp();
 
+  const [showPetals, setShowPetals] = React.useState(false);
+
+  React.useEffect(() => {
+    // Show celebratory falling petals upon opening the recipient link
+    setShowPetals(true);
+    const timer = setTimeout(() => {
+      setShowPetals(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const count = selectedFlowers.length;
 
   const handleFlowerClick = (link: string) => {
@@ -146,6 +157,31 @@ export const Recipient: React.FC = () => {
 
   return (
     <div className="recipient-container" style={{ backgroundImage: `url(${backgroundImg})` }}>
+      {/* Celebratory Falling Petals layer */}
+      {showPetals && (
+        <div className="petals-container">
+          {Array.from({ length: 25 }).map((_, idx) => {
+            const delay = idx * 0.15;
+            const left = Math.random() * 100;
+            const rotate = Math.random() * 360;
+            const scale = 0.5 + Math.random() * 0.5;
+            const duration = 3.5 + Math.random() * 1.5;
+            return (
+              <div
+                key={idx}
+                className="petal"
+                style={{
+                  left: `${left}%`,
+                  animationDelay: `${delay}s`,
+                  animationDuration: `${duration}s`,
+                  transform: `rotate(${rotate}deg) scale(${scale})`
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
+
       {/* Tiny branding line */}
       <div className="recipient-brand">petalink</div>
 

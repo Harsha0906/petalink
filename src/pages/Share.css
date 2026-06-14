@@ -277,11 +277,49 @@
 @media (max-width: 768px) {
   .share-layout-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
   }
   
+  .share-bouquet-container {
+    max-width: 260px; /* Scale down bouquet to leave space for copy card */
+    margin: 0 auto;
+  }
+
   .share-success-card {
-    padding: 30px 20px;
+    padding: 24px 20px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(169, 79, 72, 0.12);
+  }
+
+  .share-success-title {
+    font-size: 1.8rem;
+  }
+
+  .share-success-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .share-link-box {
+    border-radius: 14px;
+    padding: 4px;
+  }
+
+  .share-link-input {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .share-copy-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+  }
+
+  .share-btn-primary, .share-btn-secondary {
+    padding: 12px;
+    font-size: 0.85rem;
+    border-radius: 16px;
   }
 }
 

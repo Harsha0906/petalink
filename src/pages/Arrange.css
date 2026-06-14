@@ -281,10 +281,12 @@
   }
 
   .bouquet-canvas-container {
-    height: 50vh;
-    height: 50dvh; /* Force canvas to be bounded by vertical height */
-    width: auto;
-    aspect-ratio: 468 / 743; /* Maintain exact Figma aspect ratio */
+    height: 48vh;
+    height: 48dvh; /* Bounded height leaving space for header/controls */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
     background: transparent;
     border: none;
@@ -293,8 +295,11 @@
   }
 
   .bouquet-canvas {
-    width: 100%;
     height: 100%;
+    width: auto;
+    aspect-ratio: 468 / 743; /* Maintain aspect ratio */
+    max-width: 100%;
+    border-radius: 20px;
   }
 
   .arrange-controls {
@@ -304,8 +309,28 @@
   }
 
   .control-btn-glass, .control-btn-proceed {
-    padding: 11px;
-    font-size: 0.8rem;
-    border-radius: 16px;
+    padding: 12px;
+    font-size: 0.82rem;
+    border-radius: 18px;
   }
+}
+
+/* Premium scale-bounce micro-animation for reshuffling */
+@keyframes scaleBounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.93) translateY(6px) rotate(-1deg);
+  }
+  60% {
+    transform: scale(1.03) translateY(-4px) rotate(1deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+.reshuffle-bounce {
+  animation: scaleBounce 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
